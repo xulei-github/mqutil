@@ -1,0 +1,46 @@
+server:
+  port: 8080
+spring:
+  rabbitmq:
+    host: 8.142.24.133
+    port: 5672
+    username: xl
+    password: xl123123
+    template:
+      exchange: TestDirectExchange
+      default-receive-queue: TestDirectQueue
+      routing-key: TestDirectRouting
+      mandatory: true
+  kafka:
+    bootstrap-servers: 8.142.24.133:9092
+    producer:
+      acks: 1
+      retries: 0
+      batch-size: 4096
+      buffer-memory: 40960
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      client-id: topice_test
+    consumer:
+      group-id: defaultConsumerGroup
+      enable-auto-commit: true
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    template:
+      default-topic: topicDefault
+  activemq:
+    broker-url: tcp://8.142.24.133:5678
+    user: xl
+    password: xl123123
+    pool:
+      enabled: false
+
+
+
+rocketmq:
+  name-server: http://127.0.0.1:9876
+  producer:
+    group: producer-group-1
+    send-message-timeout: 3000
+  consumer:
+    group: consumer-group-1
